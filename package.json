@@ -1,0 +1,55 @@
+{
+  "name": "moh-ami-project",
+  "version": "1.0.0",
+  "description": "**Pronunciation**: \"moh-ah-mee\" (from \"mot ami\" meaning \"word friend\")",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "prisma generate && next build",
+    "start": "next start",
+    "lint": "next lint",
+    "postinstall": "prisma generate",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate dev",
+    "db:migrate:deploy": "prisma migrate deploy",
+    "db:studio": "prisma studio"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DawsonJay/moh-ami.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DawsonJay/moh-ami/issues"
+  },
+  "homepage": "https://github.com/DawsonJay/moh-ami#readme",
+  "dependencies": {
+    "@apollo/client": "^4.0.11",
+    "@apollo/server": "^5.2.0",
+    "@as-integrations/next": "^4.1.0",
+    "@graphql-tools/schema": "^10.0.31",
+    "@prisma/client": "6.19.1",
+    "@reduxjs/toolkit": "^2.11.2",
+    "@types/node": "^25.0.5",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "autoprefixer": "^10.4.23",
+    "eslint": "^9.39.2",
+    "eslint-config-next": "^16.1.1",
+    "graphql": "^16.12.0",
+    "next": "^16.1.1",
+    "openai": "^6.16.0",
+    "postcss": "^8.5.6",
+    "prisma": "6.19.1",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "react-redux": "^9.2.0",
+    "tailwindcss": "^3.4.19",
+    "typescript": "^5.9.3"
+  },
+  "devDependencies": {
+    "dotenv": "^17.2.3"
+  }
+}
