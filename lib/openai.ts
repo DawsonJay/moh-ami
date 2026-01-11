@@ -2,13 +2,16 @@ import OpenAI from 'openai'
 import { TranslationResponse } from '@/graphql/types'
 import { MAX_INPUT_LENGTH } from './constants'
 
-if (!process.env.OPENAI_API_KEY) {
-  throw new Error('OPENAI_API_KEY is not set in environment variables')
+// Lazy initialization - only create client when needed (not during build)
+function getOpenAIClient(): OpenAI {
+  if (!process.env.OPENAI_API_KEY) {
+    throw new Error('OPENAI_API_KEY is not set in environment variables')
+  }
+  
+  return new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY,
+  })
 }
-
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-})
 
 const TRANSLATION_PROMPT = `You are a French language learning assistant. Translate the following English text to French and provide detailed explanations.
 
@@ -106,6 +109,9 @@ export async function translateText(
   const prompt = TRANSLATION_PROMPT.replace('{ENGLISH_TEXT}', englishText)
 
   try {
+    // Get OpenAI client (lazy initialization - only when actually needed)
+    const openai = getOpenAIClient()
+    
     // Use GPT-4o-mini for better accuracy and cost-effectiveness
     const model = process.env.OPENAI_MODEL || 'gpt-4o-mini'
     const response = await openai.chat.completions.create({
